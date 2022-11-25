@@ -47,3 +47,13 @@ func NewConfig() (Config, error) {
 
 	return config, nil
 }
+
+func (c *Config) SbiPort() uint16 {
+	var port uint16 = 9000
+	for _, node := range c.RedGroup.Nodes {
+		if node.Name == c.SvcCfg.Name {
+			port = node.SbiPort
+		}
+	}
+	return port
+}
