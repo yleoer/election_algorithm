@@ -1,0 +1,34 @@
+{
+  "svcCfg": {
+    "name": "prim-1",
+    "dbFqdn": "redis",
+    "dbPort": 6379
+  },
+  "redGroup": {
+    "keepAliveInterval": 3,
+    "keepAliveRespTime": 1,
+    "keepAliveConsecFail": 3,
+    "autoReversionDelay": 3,
+    "baseRouteCost": 3,
+    "nodes": [
+      {
+        "name": "prim-1",
+        "priority": "1",
+        "fqdn": "rmsvc1",
+        "sbiPort": 9000
+      },
+      {
+        "name": "sec-1",
+        "priority": "2",
+        "fqdn": "rmsvc2",
+        "sbiPort": 9000
+      },
+      {
+        "name": "sec-2",
+        "priority": "3",
+        "fqdn": "rmsvc3",
+        "sbiPort": 9000
+      }
+    ]
+  }
+}
