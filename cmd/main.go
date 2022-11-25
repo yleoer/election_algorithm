@@ -1,16 +1,14 @@
 package main
 
 import (
+	"context"
 	"fmt"
 
-	"election_algorithm/pkg/config"
+	"election_algorithm/pkg/global"
 )
 
 func main() {
-	cfg, err := config.NewConfig()
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Printf("%#v\n", cfg)
+	fmt.Printf("%#v\n", global.GetConfig())
+	cli := global.GetRedisCli()
+	fmt.Println(cli.Ping(context.Background()).Result())
 }

@@ -29,20 +29,21 @@ type NodeConfig struct {
 	SbiPort  uint16 `json:"sbiPort"`
 }
 
-func NewConfig() (*Config, error) {
+func NewConfig() (Config, error) {
 	viper.SetConfigName("config")
 	viper.SetConfigType("json")
 	viper.AddConfigPath("./config/")
 	viper.AddConfigPath("/etc/config")
 
-	if err := viper.ReadInConfig(); err != nil {
-		return nil, err
-	}
-
 	var config Config
-	if err := viper.Unmarshal(&config); err != nil {
-		return nil, err
+
+	if err := viper.ReadInConfig(); err != nil {
+		return config, err
 	}
 
-	return &config, nil
+	if err := viper.Unmarshal(&config); err != nil {
+		return config, err
+	}
+
+	return config, nil
 }
